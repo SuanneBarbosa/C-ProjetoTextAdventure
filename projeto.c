@@ -127,6 +127,7 @@ int main() // dentro da main so manipula os dados
     strcpy(levelList[9].text, "** Você achou o tesouro, parabéns!. **\n");
 
     // Configurações iniciais
+    
 
     printf("Você entra numa casa abandonada na espera de encontrar algum tesouro antigo (ou pelo menos algo que possa vender por um preço razoável). Você lembra do rosto do velho enquanto era levado pelas ambulâncias: tão sem vida quanto a casa que ele morou nos últimos 2 meses. Ele havia se mudado pra vizinhança após ter sua casa no centro da cidade tomada por dívidas, então você não espera encontrar muita coisa dele, mas a casa esteve de pé por muitos anos antes e a família Skalo que sempre a habitou não parecia ser tão 'pé-rapada' quanto o velho senhor que provavelmente a conseguiu por uma pechincha. O motivo pela mudança de senhorio, ainda que peculiar, foi o que te trouxe aqui neste momento. No último ano, cada um dos 6 membros da família Skalo faleceu de formas estranhas (para não dizer suspeitas). A forma súbita que as mortes se sucederam te fizeram imaginar que seus bens permaneceram na casa, já que eram os últimos integrantes da família antiga, e roubar uma casa abandonada sem ninguém pra dar falta é muito melhor que invadir as residências dos rostos conhecidos na região, sempre com o risco de ser pego ou reconhecido. Hoje, ao ver as ambulâncias saindo, você decidiu tentar a sorte.\n Agora, você tem as seguintes opções:\n");
 
@@ -134,15 +135,54 @@ int main() // dentro da main so manipula os dados
 
     // fazer while chamar a função makequestion
 
-    while (currentLevel.type != "endgame")
+   
+    while  (strcmp(currentLevel.type, "endgame") != 0)
     {
-        for (int i = 0; i < currentLevel.answerQuantity; i++)
-        { // fazer as perguntas
-            printf(currentLevel.answerList[i].text);
-            printf("\n");
-        }
-        scanf("%s", &userAnswer);
-        printf("Agora você está no %s. E tem as seguintes opções: \n", userAnswer);
+         // verificar o tipo de nível
+       
+         if  (strcmp(currentLevel.type , "normal") == 0){
+             
+            for (int i = 0; i < currentLevel.answerQuantity; i++){ // fazer as perguntas
+                printf(currentLevel.answerList[i].text);
+                printf("\n");
+            }
+               
+            printf("ajuda\n");
+            printf("sair\n");
+
+                
+            scanf("%s", &userAnswer);
+            printf("Sua resposta foi %s!\n", userAnswer);
+                
+                // opções extras, ajuda e sair 
+        
+            if (strcmp(userAnswer , "ajuda") == 0)
+            {
+                printf("Vou te ajudar!\n");
+            }
+            else if (strcmp(userAnswer , "sair") == 0)
+            {
+                printf("Bye Bye!\n");
+                return 0;
+            }
+            else
+            { // comparar as respostas e níveis
+                for (int i = 0; i < currentLevel.answerQuantity; i++){
+                    if (strcmp(currentLevel.answerList[i].text, userAnswer) == 0){
+                        currentLevel = levelList[currentLevel.answerList[i].path];
+                        break; 
+                    }
+                }
+                
+                printf("%s\n", currentLevel.text);
+            }           
+         }
+         else {
+            // puzzle
+         }
+         
+        
+        
     }
 
     // int suanne = sizeof(levelList[8].answerList)/sizeof(levelList[8].answerList[0]);
@@ -153,5 +193,3 @@ int main() // dentro da main so manipula os dados
     return 0;
 }
 
-// proximos passos
-// criar uma lígica verificar a resposta do usuário se for valida ou não para ir ao caminho certo path
