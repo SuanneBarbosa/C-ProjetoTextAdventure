@@ -1,5 +1,5 @@
 
-********** Você está no corredor no segundo andar. ************
+********** Voce esta no corredor no segundo andar. ************
 
-Você subiu as escadas e chegou em um corredor com 3 portas e uma janela. Você sabe que as portas levam aos quartos da família Skalo: um quarto para mãe e pai, provavelmente tendo sido reformado para os gostos do senhor que morou ali por dois meses. O segundo quarto provavelmente era o dos trigêmeos, o maior da casa. O terceiro quarto era da filha caçula, a última a falecer na história trágica da família, de uma forma também estranha: catapora. Se há algum tesouro na casa, provavelmente estará em um dos três quartos.
+Voce subiu as escadas e chegou em um corredor com 3 portas e uma janela. Voce sabe que as portas levam aos quartos da familia Skalo: um quarto para mae e pai, provavelmente tendo sido reformado para os gostos do senhor que morou ali por dois meses. O segundo quarto provavelmente era o dos trigemeos, o maior da casa. O terceiro quarto era da filha cacula, a ultima a falecer na historia tragica da familia, de uma forma tambem estranha: catapora. Se ha algum tesouro na casa, provavelmente estara em um dos tres quartos.
 Para onde vc vai seguir?"
