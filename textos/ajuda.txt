@@ -1,0 +1,5 @@
+*************************AJUDA*****************************
+Digite sua resposta como está escrito na lista de opções e aperte Enter para enviar. 
+Caso queria desistir do jogo digite (sair) e aperte Enter.
+Para voltar ao nível anterior digite (voltar) e aperte Enter. 
+Na fase do puzzle, há 3 chances para responder, se errar todas você perde o jogo.  
