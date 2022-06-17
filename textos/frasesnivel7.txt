@@ -1,4 +1,4 @@
 
 ************ Acerte o enigma!************
  
- De todas as coisas estranhas da casa, essa é de longe a pior. Você aperta o botão “Iniciar” na cabine e um enigma é apresentado na sua tela.
+ De todas as coisas estranhas da casa, essa e de longe a pior. Você aperta o botao “Iniciar” na cabine e um enigma eh apresentado na sua tela.
