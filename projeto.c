@@ -113,7 +113,7 @@ void initLevels(){// Tipos de níveis e caminhos percorridos por array
     levelList[6].answerList[0].path = 2;
     levelList[6].answerList[1].path = 7;
     strcpy(levelList[6].answerList[0].text, "voltar");
-    strcpy(levelList[6].answerList[1].text, "botão");
+    strcpy(levelList[6].answerList[1].text, "pressionar");
     levelList[6].answerQuantity = 2;
 
     levelList[7].id = 7;
