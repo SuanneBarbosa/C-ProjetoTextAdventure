@@ -22,7 +22,7 @@ LEVEL levelList[900]; // lista de todos os níveis
 LEVEL currentLevel;   // nível atual
 
 int errorCount = 0; // contador de erros do puzzle
-char puzzleAnswer[100];
+char puzzleAnswer[100];// respostas dos enigmas
 char textFromFile[5000]; // variavel que recebe os textos dos arquivos
 char userAnswer[49];     // resposta do usuário
 
@@ -34,11 +34,9 @@ void printPuzzle(char *question, char *answerquestion){ // função das pergunta
 void getTextFromFile(char *filename){ // função dos arquivos em txt
     bzero(textFromFile, 5000);       // limpa a variavel textfromfile
     FILE *fp = fopen(filename, "r"); // abre conexão com o arquivo
-
     if (fp == NULL){
         printf("Error: could not open file %s", filename);
     }
-
     char ch; // percorre todo o arquivo carctere por caractere
     int i = 0;
     while ((ch = fgetc(fp)) != EOF){
@@ -110,10 +108,10 @@ void initLevels(){// Tipos de níveis e caminhos percorridos por array
     strcpy(levelList[6].type, "normal");
     getTextFromFile("./textos/frasesnivel6.txt");
     strcpy(levelList[6].text, textFromFile);
-    levelList[6].answerList[0].path = 2;
-    levelList[6].answerList[1].path = 7;
-    strcpy(levelList[6].answerList[0].text, "voltar");
-    strcpy(levelList[6].answerList[1].text, "pressionar");
+    levelList[6].answerList[1].path = 2;
+    levelList[6].answerList[0].path = 7;
+    strcpy(levelList[6].answerList[0].text, "pressionar");
+    strcpy(levelList[6].answerList[1].text, "voltar");
     levelList[6].answerQuantity = 2;
 
     levelList[7].id = 7;
@@ -122,7 +120,7 @@ void initLevels(){// Tipos de níveis e caminhos percorridos por array
     strcpy(levelList[7].text, textFromFile);
     levelList[7].answerList[0].path = 8;
     levelList[7].answerList[1].path = 2;
-    strcpy(levelList[7].answerList[0].text, "tentar");
+    strcpy(levelList[7].answerList[0].text, "iniciar");
     strcpy(levelList[7].answerList[1].text, "voltar");
     levelList[7].answerQuantity = 2;
 
@@ -152,16 +150,10 @@ void loadNormalLevel(){
         printf(currentLevel.answerList[i].text);
         printf("\n");
     }
-
     printf("ajuda\n");
     printf("sair\n");
-
     scanf("%s", &userAnswer);
-
     printf("Sua resposta foi %s!\n", userAnswer);
-
-    // opções extras, ajuda e sair
-
     if (strcmp(userAnswer, "ajuda") == 0){
         getTextFromFile("./textos/ajuda.txt");
         printf(textFromFile);
@@ -169,7 +161,6 @@ void loadNormalLevel(){
     else if (strcmp(userAnswer, "sair") == 0){
         getTextFromFile("./textos/sair.txt");
         printf(textFromFile);
-
         exit(0);
     }
     else{ // comparar as respostas e níveis
@@ -184,11 +175,9 @@ void loadNormalLevel(){
 
 void loadPuzzle(){
     printf("Desvende o enigma ou escolha uma das seguintes opções:\najuda\nvoltar\nsair\n");
-
     // case aleatório
     srand(time(NULL));
-    int puzzle = rand() % 3;
-
+    int puzzle = rand() % 7;
     switch (puzzle){
     case 0:
         getTextFromFile("./textos/puzzle0.txt");
@@ -200,20 +189,27 @@ void loadPuzzle(){
         break;
     case 2:
         getTextFromFile("./textos/puzzle2.txt");
-        printPuzzle(textFromFile, "talheres");
+        printPuzzle(textFromFile, "cebola");
         break;
-    default:
-        getTextFromFile("./textos/puzzleDefault.txt");
+    case 3:
+        getTextFromFile("./textos/puzzle3.txt");
+        printPuzzle(textFromFile, "pipi");
+        break;
+    case 4:
+        getTextFromFile("./textos/puzzle4.txt");
+        printPuzzle(textFromFile, "tempo");
+        break;
+    case 5:
+        getTextFromFile("./textos/puzzle5.txt");
+        printPuzzle(textFromFile, "cadeado");
+        break;
+    case 6:
+        getTextFromFile("./textos/puzzle6.txt");
         printPuzzle(textFromFile, "espelho");
         break;
     }
-
     scanf("%s", &userAnswer);
-
     printf("Sua resposta foi %s!\n", userAnswer);
-
-    // opções extras, ajuda e sair
-
     if (strcmp(userAnswer, "ajuda") == 0){
         getTextFromFile("./textos/ajuda.txt");
         printf(textFromFile);
@@ -221,7 +217,6 @@ void loadPuzzle(){
     else if (strcmp(userAnswer, "sair") == 0){
         getTextFromFile("./textos/sair.txt");
         printf(textFromFile);
-
         exit(0);
     }
     else if (strcmp(userAnswer, "voltar") == 0){
@@ -230,34 +225,27 @@ void loadPuzzle(){
     else if (strcmp(userAnswer, puzzleAnswer) == 0){
         currentLevel = levelList[currentLevel.answerList[0].path];
     }
-
     else{ // comparar as respostas e níveis
         errorCount++;
         if (errorCount == 3){
             getTextFromFile("./textos/respostaIncorreta.txt");
             printf(textFromFile);
-
             exit(0);
         }
         else{
-            printf("Você errou e tem mais %d tentativas\n", 3 - errorCount);
+            printf("\n***VOCÊ ERROU E TEM MAIS %d TENTATIVAS***\n", 3 - errorCount);
         }
     }
 }
 
-int main(){  // dentro da main so manipula os dados
+int main(){  
     initLevels();
-    // Configurações iniciais
-    getTextFromFile("./textos/historiaskalo.txt"); // historia inicial
-    printf(textFromFile);
-    getchar();
-
+    getTextFromFile("./textos/historiaskalo.txt"); // primeira tela historia inicial
+    printf(textFromFile); //puxa o texto
+    getchar(); // para ate precionar o enter para entrar nas opções
     currentLevel = levelList[0]; // o nível atual inicia no nivel 0 - passo inicial
-
     while (strcmp(currentLevel.type, "endgame") != 0){
-        // verificar o tipo de nível
-        printf("%s\n", currentLevel.text);
-
+        printf("%s\n", currentLevel.text); // verificar o tipo de nível
         if (strcmp(currentLevel.type, "normal") == 0){
             loadNormalLevel();
         }
